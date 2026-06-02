@@ -1,0 +1,1 @@
+ALTER TABLE evento ADD COLUMN entradas_vendidas INTEGER NOT NULL DEFAULT 0;

@@ -1,0 +1,17 @@
+package com.cinium.ticketapi;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.cache.annotation.EnableCaching; // <-- NUEVO IMPORT
+
+@SpringBootApplication
+@EnableAsync // Encendemos el motor de hilos secundarios
+@EnableCaching
+public class TicketapiApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(TicketapiApplication.class, args);
+    }
+
+}
