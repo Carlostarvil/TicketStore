@@ -20,7 +20,7 @@ import java.util.Map;
 @CrossOrigin(origins = "http://localhost:5173")
 public class EventoController {
 
-    // --- NUEVO: Motor de registro para la consola ---
+
     private static final Logger log = LoggerFactory.getLogger(EventoController.class);
 
     @Autowired
@@ -30,7 +30,7 @@ public class EventoController {
     @PostMapping
     @CacheEvict(value = "eventos", allEntries = true)
     public Evento crearEvento(@RequestBody Evento nuevoEvento) {
-        // --- NUEVO: Auditoría de datos entrantes ---
+        
         log.info("--- NUEVA PETICIÓN DE CREACIÓN DE EVENTO ---");
         log.info("Nombre: {}", nuevoEvento.getNombre());
         log.info("Fecha: {}", nuevoEvento.getFecha());

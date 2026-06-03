@@ -37,7 +37,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         // 2. Comprobar si el token existe y empieza por la palabra "Bearer "
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             jwt = authorizationHeader.substring(7); // Extraemos el token quitando "Bearer " (7 caracteres)
-            username = jwtUtil.extraerUsername(jwt); // Usamos tu JwtUtil para sacar el nombre
+            username = jwtUtil.extraerUsername(jwt); //JwtUtil para sacar el nombre
         }
 
         // 3. Si encontramos un usuario y no está ya autenticado en este contexto

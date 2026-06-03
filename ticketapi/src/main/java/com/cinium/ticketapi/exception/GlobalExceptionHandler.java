@@ -9,7 +9,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.time.LocalDateTime;
 
-@RestControllerAdvice // ¡Mantenemos tu etiqueta porque es perfecta para APIs REST!
+@RestControllerAdvice 
 public class GlobalExceptionHandler {
 
     // 1. Manejar errores de VALIDACIÓN (Ej: email sin arroba) -> Devuelve 400 Bad Request

@@ -43,7 +43,7 @@ public class TicketController {
 
         ticketService.comprarTicket(eventoId, datosCompra);
 
-        // --- NUEVO: Enviamos también el email del comprador al servicio ---
+        
         emailService.enviarEmailTicket(datosCompra.getNombreComprador(), evento.getNombre(), datosCompra.getEmail());
 
         return ResponseEntity.ok(Map.of("mensaje", "Compra realizada con éxito. Revisa tu email."));

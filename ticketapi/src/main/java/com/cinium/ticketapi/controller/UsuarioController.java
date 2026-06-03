@@ -17,7 +17,7 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    // --- NUEVO: Leer todos los usuarios ---
+
     @GetMapping
     public ResponseEntity<List<Usuario>> obtenerTodosLosUsuarios() {
         return ResponseEntity.ok(usuarioRepository.findAll());

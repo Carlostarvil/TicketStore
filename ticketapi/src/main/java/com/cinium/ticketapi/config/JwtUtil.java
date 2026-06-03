@@ -14,7 +14,7 @@ import java.util.function.Function;
 @Component
 public class JwtUtil {
 
-    // 1. La llave secreta para encriptar (Debe ser compleja y larga)
+    // 1. La llave secreta para encriptar
     private static final String SECRET_KEY = "MiClaveSecretaSuperSeguraParaElProyectoDeTickets2026_MasLargaYRobusta!";
     
     // Convertimos el texto en una clave criptográfica real

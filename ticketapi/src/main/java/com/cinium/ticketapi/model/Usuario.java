@@ -1,6 +1,6 @@
 package com.cinium.ticketapi.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty; // <-- NUEVA IMPORTACIÓN DE JACKSON
+import com.fasterxml.jackson.annotation.JsonProperty; 
 import jakarta.persistence.*;
 
 @Entity
@@ -14,7 +14,7 @@ public class Usuario {
     @Column(nullable = false, unique = true)
     private String username;
 
-    // --- SOLUCIÓN: Puerta de un solo sentido ---
+   
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(nullable = false)
     private String password;

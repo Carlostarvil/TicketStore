@@ -47,7 +47,7 @@ public class TicketService {
 
         // 4. Crear el Ticket
         Ticket nuevoTicket = new Ticket();
-        // ESTA ES LA LÍNEA CORREGIDA:
+        
         nuevoTicket.setNombreComprador(datosCompra.getNombreComprador());
         nuevoTicket.setEmailComprador(datosCompra.getEmail());
         nuevoTicket.setEvento(evento);

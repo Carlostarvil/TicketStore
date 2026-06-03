@@ -55,6 +55,88 @@ Sistema de login seguro con tokens JWT y control de acceso basado en roles:
 * `ADMIN`
 * `USER`
 
+## 🔐 Autenticación y Gestión de Usuarios
+
+Por motivos de seguridad y buenas prácticas, el endpoint público de registro no permite asignar roles directamente desde el cuerpo de la petición (evitando vulnerabilidades de *Mass Assignment*).
+
+### 1️⃣ Crear un usuario (Rol: `USER`)
+Cualquier cuenta nueva registrada a través del sistema público adquirirá automáticamente el rol de cliente básico.
+
+* **Endpoint:** `POST /api/auth/register`
+* **Body (JSON):**
+  ```json
+  {
+    "username": "nuevo.cliente@email.com",
+    "password": "miContrasenaSegura",
+    "nombre": "Nombre del Cliente"
+  }
+
+
+### 2️⃣ Crear un administrador (Rol: ADMIN)
+Para acceder a los endpoints protegidos con privilegios de administración en el entorno de desarrollo, existen dos vías:
+
+Vía A: Usar la cuenta preconfigurada (Recomendado)
+El sistema utiliza un CommandLineRunner que inyecta automáticamente un administrador de prueba al levantar la aplicación por primera vez:
+
+Usuario: admin@ticketstore.com
+
+Contraseña: admin123
+
+Vía B: Elevación manual en Base de Datos
+Si necesitas convertir un usuario recién registrado en administrador, debes registrarlo primero con el endpoint público y, posteriormente, acceder a la consola de PostgreSQL para elevar sus privilegios ejecutando:
+
+UPDATE usuarios SET role = 'ADMIN' WHERE username = 'nuevo.cliente@email.com';
+Nota: Una vez registrado el usuario o utilizando la cuenta preconfigurada, haz una petición a POST /api/auth/login para obtener el Token JWT. Copia ese token y pégalo en el botón Authorize (candado) de Swagger para desbloquear la API.
+
+Como tienes la base de datos corriendo dentro de Docker, no puedes ejecutar ese comando SQL directamente en tu terminal de Windows. Tienes que "entrar" a la base de datos que está ejecutándose dentro del contenedor.
+
+Tienes dos formas de hacerlo: desde la propia terminal usando Docker, o usando un programa visual (que suele ser más cómodo si estás desarrollando).
+
+Opción 1: Desde la terminal (con comandos Docker)
+Abre tu terminal (la misma donde hiciste el docker compose up) y sigue estos pasos:
+
+Averigua el nombre de tu contenedor de base de datos:
+Ejecuta este comando para ver todos los contenedores activos:
+
+docker ps
+
+Busca en la lista el que corresponda a PostgreSQL (postgres el mío).
+
+Entra a la consola de PostgreSQL (psql):
+Usa el siguiente comando sustituyendo los datos por los tuyos (el nombre del contenedor, el usuario de tu base de datos y el nombre de tu base de datos):
+
+Bash
+docker exec -it <nombre_del_contenedor> psql -U <tu_usuario_de_db> -d <nombre_de_tu_db>
+Ejemplo real: docker exec -it ticketapi-db-1 psql -U postgres -d ticketstore
+
+Ejecuta el comando SQL:
+Una vez que el prompt cambie y veas que estás dentro de la base de datos (se verá algo como ticketstore=#), pega el comando y presiona Enter:
+
+UPDATE usuarios SET role = 'ADMIN' WHERE username = 'nuevo.cliente@email.com';
+
+Sal de la base de datos:
+Escribe \q y presiona Enter para salir de PostgreSQL y volver a tu terminal de Windows.
+
+Opción 2: Con un gestor de base de datos (Recomendado)
+Si estás desarrollando en Java y Spring Boot, lo más probable es que en el futuro uses algún cliente visual para ver tus tablas.
+
+Descarga e instala un programa gratuito como DBeaver o pgAdmin (si no lo tienes ya).
+
+Crea una Nueva Conexión a PostgreSQL.
+
+Rellena los datos para conectarte a tu Docker:
+
+Host: localhost
+
+Puerto: 5432 (o el que hayas puesto en tu docker-compose.yml)
+
+Usuario y Contraseña: Los que tengas configurados para tu base de datos.
+
+Una vez conectado, abre un Script SQL o consola de base de datos.
+
+Pega el comando UPDATE, dale al botón de ejecutar (suele ser un botón de "Play" ▶️) y listo.
+
+Cualquiera de los dos métodos hará que el usuario cambie de rol inmediatamente. La próxima vez que ese usuario inicie sesión en el endpoint /api/auth/login, el Token JWT que reciba ya tendrá los permisos de ADMIN integrados.
 ### Control de Concurrencia
 
 Manejo de transacciones SQL (`@Transactional`) para evitar la sobreventa de entradas en milisegundos.
@@ -136,6 +218,8 @@ POST /api/auth/register
 2. Iniciar sesión para obtener un **Token JWT**.
 
 3. Utilizar el candado de Swagger (**Authorize**) para inyectar el token.
+
+
 
 # Frontend (Opcional)
 

@@ -1,6 +1,6 @@
 package com.cinium.ticketapi.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore; // <-- IMPORTANTE: Añade esta línea
+import com.fasterxml.jackson.annotation.JsonIgnore; 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,8 +21,8 @@ public class Ticket {
     private String nombreComprador;
     private String emailComprador;
 
-    // --- AQUÍ ESTÁ LA MAGIA PARA EVITAR EL BUCLE ---
-    @JsonIgnore // <-- Esta anotación rompe el círculo vicioso
+   
+    @JsonIgnore 
     @ManyToOne
     @JoinColumn(name = "evento_id", nullable = false)
     private Evento evento;

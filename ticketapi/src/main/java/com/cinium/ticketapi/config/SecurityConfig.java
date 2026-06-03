@@ -58,7 +58,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         
-        // Establece el origen autorizado de confianza (Tu Frontend de React)
+        // Establece el origen autorizado de confianza
         configuration.setAllowedOrigins(List.of("http://localhost:5173"));
         
         // Determina qué métodos HTTP están permitidos procesar desde el exterior

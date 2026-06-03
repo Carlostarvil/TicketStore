@@ -61,7 +61,7 @@ export default function Login({ onLoginSuccess }) {
     return (
         <div className="min-h-screen flex items-center justify-center p-4 font-sans text-slate-800 bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden">
             
-            {/* Manchas de color difuminadas para el fondo */}
+            {}
             <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-indigo-300/30 blur-[100px] pointer-events-none"></div>
             <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-cyan-300/20 blur-[100px] pointer-events-none"></div>
 
@@ -115,7 +115,7 @@ export default function Login({ onLoginSuccess }) {
                 </div>
             </div>
 
-            {/* --- PIE DE PÁGINA DEL LOGIN --- */}
+            {}
             <footer className="absolute bottom-6 left-0 right-0 text-center text-[10px] font-bold text-slate-400 tracking-widest uppercase pointer-events-none z-10">
                 © 2026 Ticketmaster API · Panel de Acceso Seguro
             </footer>

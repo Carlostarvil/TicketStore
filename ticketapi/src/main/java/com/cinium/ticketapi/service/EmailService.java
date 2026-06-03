@@ -16,14 +16,14 @@ public class EmailService {
     @Autowired
     private JavaMailSender mailSender;
 
-    // --- NUEVO: Ahora recibimos el email de destino ---
+    
     @Async
     public void enviarEmailTicket(String nombreComprador, String nombreEvento, String emailDestino) {
         log.info("Iniciando envío de email real a {} para el evento '{}'...", emailDestino, nombreEvento);
         
         try {
             SimpleMailMessage mensaje = new SimpleMailMessage();
-            mensaje.setFrom("Ticketmaster API <tu_correo@gmail.com>"); // Opcional: pon aquí tu correo
+            mensaje.setFrom("Ticketmaster API <tu_correo@gmail.com>"); 
             mensaje.setTo(emailDestino);
             mensaje.setSubject("🎟️ ¡Tus entradas para " + nombreEvento + " están confirmadas!");
             mensaje.setText("Hola " + nombreComprador + ",\n\n"

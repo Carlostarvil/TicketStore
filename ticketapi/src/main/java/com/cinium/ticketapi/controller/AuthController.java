@@ -34,7 +34,7 @@ public class AuthController {
                     new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
             );
         } catch (Exception e) {
-            // NUEVO: Respuesta estructurada en vez de excepción
+            
             return ResponseEntity.status(401).body(Map.of("mensaje", "Usuario o contraseña incorrectos"));
         }
 
@@ -53,7 +53,7 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> registrarUsuario(@RequestBody Usuario nuevoUsuario) {
         
-        // --- NUEVO: Devolvemos JSON específicos en vez de explotar con un RuntimeException ---
+        
         if (usuarioRepository.findByUsername(nuevoUsuario.getUsername()).isPresent()) {
             return ResponseEntity.badRequest().body(Map.of("mensaje", "El nombre de usuario ya está en uso. Elige otro."));
         }
@@ -61,7 +61,7 @@ public class AuthController {
         if (nuevoUsuario.getEmail() != null && usuarioRepository.findByEmail(nuevoUsuario.getEmail()).isPresent()) {
             return ResponseEntity.badRequest().body(Map.of("mensaje", "Este correo electrónico ya está registrado."));
         }
-        // -------------------------------------------------------------------------------------
+       
 
         String passwordCifrada = passwordEncoder.encode(nuevoUsuario.getPassword());
         nuevoUsuario.setPassword(passwordCifrada);

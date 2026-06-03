@@ -11,7 +11,7 @@ export default function App() {
     const [eventos, setEventos] = useState([]);
     const [cargando, setCargando] = useState(false);
     
-    // --- ESTADO DE NAVEGACIÓN ---
+    // ESTADO DE NAVEGACIÓN
     const [eventoSeleccionado, setEventoSeleccionado] = useState(null); 
 
     // Formulario Admin
@@ -104,7 +104,7 @@ export default function App() {
                 headers: { Authorization: `Bearer ${token}` }
             });
             if (eventoSeleccionado && eventoSeleccionado.id === eventoId) {
-                setEventoSeleccionado(null); // Si lo borra desde dentro, salimos al menú
+                setEventoSeleccionado(null); 
             }
             cargarEventos();
         } catch (error) {
@@ -130,7 +130,7 @@ export default function App() {
             
             setMensajeTicket(`éxito:${respuesta.data.mensaje}`);
             setNombreComprador('');
-            cargarEventos(); // Refresca los datos del evento actual para ver la plaza restada
+            cargarEventos(); 
         } catch (error) {
             if (error.response && error.response.data) {
                 setMensajeTicket(`error:${error.response.data.mensaje}`);
@@ -386,7 +386,7 @@ export default function App() {
                                     </div>
                                     
                                     <div className="w-full max-w-xs flex gap-3">
-                                        {/* NUEVO BOTÓN PARA ENTRAR AL DETALLE */}
+                                        {}
                                         <button onClick={() => setEventoSeleccionado(evento)} className="flex-1 py-3.5 bg-slate-900 hover:bg-indigo-600 text-white font-bold text-xs rounded-2xl shadow-md transition-all uppercase tracking-wider active:scale-95">
                                             Ver Detalles
                                         </button>

@@ -42,8 +42,8 @@ public class TicketServiceTest {
         eventoSimulado.setCapacidadMaxima(1); // Configuramos aforo límite de 1 persona
 
         TicketCompraDTO datosCompra = new TicketCompraDTO();
-datosCompra.setNombreComprador("Carlos"); // <-- Cámbialo por tu nombre de método real
-datosCompra.setEmail("carlos@email.com"); // <-- Cámbialo por tu nombre de método real
+        datosCompra.setNombreComprador("Carlos"); 
+        datosCompra.setEmail("carlos@email.com"); 
 
         // Simulamos que ya se vendió un ticket previo para este mismo evento
         Ticket ticketExistente = new Ticket();

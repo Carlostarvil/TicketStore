@@ -11,6 +11,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     
     Optional<Usuario> findByUsername(String username);
 
-    // --- Nuevo método para validar la compra de tickets ---
+    
     Optional<Usuario> findByEmail(String email);
 }

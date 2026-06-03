@@ -25,7 +25,7 @@ public class Evento {
     
     private int capacidadMaxima;
 
-    // --- CAMPOS DE CALENDARIO ---
+   
     @Column(name = "fecha")
     private String fecha;
 
@@ -53,7 +53,7 @@ public class Evento {
     public int getCapacidadMaxima() { return capacidadMaxima; }
     public void setCapacidadMaxima(int capacidadMaxima) { this.capacidadMaxima = capacidadMaxima; }
 
-    // --- MÉTODOS DE CALENDARIO (Solución al error) ---
+    
     public String getFecha() { return fecha; }
     public void setFecha(String fecha) { this.fecha = fecha; }
 
@@ -63,7 +63,7 @@ public class Evento {
     public String getHoraFin() { return horaFin; }
     public void setHoraFin(String horaFin) { this.horaFin = horaFin; }
 
-    // --- MÉTODOS DE AFORO ---
+   
     public List<Ticket> getTickets() { return tickets; }
     public void setTickets(List<Ticket> tickets) { this.tickets = tickets; }
 

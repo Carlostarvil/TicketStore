@@ -13,7 +13,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    # NUEVO: Comprueba si PostgreSQL ya está listo para recibir conexiones
+    
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U admin -d ticketdb"]
       interval: 5s
@@ -26,7 +26,7 @@ services:
     container_name: ticketapi-app
     ports:
       - "8081:8081"
-    # NUEVO: Espera explícitamente a que el chequeo de salud de arriba diga "healthy"
+    
     depends_on:
       db:
         condition: service_healthy
